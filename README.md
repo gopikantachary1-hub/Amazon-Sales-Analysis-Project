@@ -1,43 +1,23 @@
 # Amazon-Sales-Analysis-Project
-Project Overview
+
+**Project Overview**
+
 I have worked on analyzing a dataset of over 20,000 sales records from an Amazon-like e-commerce platform. This project involves extensive querying of customer behavior, product performance, and sales trends using PostgreSQL. Through this project, I have tackled various SQL problems, including revenue analysis, customer segmentation, and inventory management.
 
 The project also focuses on data cleaning, handling null values, and solving real-world business problems using structured queries.
 
 An ERD diagram is included to visually represent the database schema and relationships between tables.
 
-Database Tables (from the ERD)
-The image also contains an Entity Relationship Diagram (ERD) with the following tables and key fields:
+**Database Setup & Design**
 
-Customers: customer_id (PK), first_name, last_name, state, address
+**Schema Structure**
 
-Products: product_id (PK), product_name, price, cogs, category_id (FK)
-
-Orders: order_id (PK), order_date, customer_id (FK), order_status, product_id (FK)
-
-Order_Items: order_item_id (PK), order_id (FK), product_id (FK), quantity, price_per_unit, total_price
-
-Inventory: inventory_id (PK), product_id (FK), stock_remaining, warehouse_id, restock_date
-
-Category: category_id (PK), category_name
-
-Sellers: seller_id (PK), seller_name, brand_type
-
-Payments: payment_id (PK), order_id (FK), payment_date, payment_mode, payment_status
-
-Shipping: shipping_id (PK), order_id (FK), shipping_date, delivery_status, return_date
-
-
-Database Setup & Design
-Schema Structure
-
-
+```
 CREATE TABLE category
 (
     category_id   INT PRIMARY KEY,
     category_name VARCHAR(20)
 );
-
 -- customers TABLE
 CREATE TABLE customers
 (
@@ -67,7 +47,6 @@ CREATE TABLE products
     CONSTRAINT product_fk_category FOREIGN KEY(category_id) REFERENCES category(category_id)
 );
 
-
 -- orders
 CREATE TABLE orders
 (
@@ -91,8 +70,6 @@ CREATE TABLE order_items
     CONSTRAINT order_items_fk_orders FOREIGN KEY (order_id) REFERENCES orders(order_id),
     CONSTRAINT order_items_fk_products FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
-
-
 
 -- payment TABLE
 CREATE TABLE payments
@@ -124,7 +101,7 @@ CREATE TABLE inventory
     last_stock_date DATE,
     CONSTRAINT inventory_fk_products FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
-
+```
 
 Task: Data Cleaning
 The dataset was cleaned by performing the following actions:
